@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebaseflutterapp/home.dart';
+import 'package:firebaseflutterapp/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -28,18 +29,27 @@ class _PhotogallerypageState extends State<Photogallerypage> {
         ),
         body: Stack(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
-                        radius: 35,
-                        backgroundColor: Colors.amber,
-                        backgroundImage: NetworkImage(
-                            "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Profilescreen(),
+                    ));
+                        },
+                        child: CircleAvatar(
+                          radius: 35,
+                          backgroundColor: Colors.amber,
+                          backgroundImage: NetworkImage(
+                              "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                        ),
                       ),
                       Text(
                         "Gallery",
@@ -72,15 +82,16 @@ class _PhotogallerypageState extends State<Photogallerypage> {
                         .collection("imageurl")
                         .snapshots(),
                     builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.data == null) {
+                        return const CircularProgressIndicator();
+                      }
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return MasonryGridView.builder(
-                          
                           itemCount: snapshot.data!.docs.length,
                           gridDelegate:
                               const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2),
                           itemBuilder: (context, index) {
-                            
                             return Padding(
                               padding: const EdgeInsets.all(8),
                               child: Container(
@@ -90,18 +101,15 @@ class _PhotogallerypageState extends State<Photogallerypage> {
                                 child: const CircularProgressIndicator(),
                               ),
                             );
-                            
                           },
                         );
                       } else if (snapshot.hasData) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: MasonryGridView.builder(
-                            
                             mainAxisSpacing: 4,
                             crossAxisSpacing: 4,
                             itemCount: snapshot.data!.docs.length,
-                            
                             gridDelegate:
                                 const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2),
@@ -119,13 +127,9 @@ class _PhotogallerypageState extends State<Photogallerypage> {
                                             .data!.docs[index]
                                             .get("url"))),
                                   ),
-                                  
                                 ),
-                                
                               );
-                              
                             },
-                            
                           ),
                         );
                       } else {

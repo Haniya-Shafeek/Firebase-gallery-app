@@ -3,6 +3,7 @@ import 'package:firebaseflutterapp/Photogallery.dart';
 import 'package:firebaseflutterapp/firebase_options.dart';
 
 import 'package:firebaseflutterapp/login.dart';
+import 'package:firebaseflutterapp/splash.dart';
 
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Loginpage(),
+      home: const Splash(),
     );
   }
 }

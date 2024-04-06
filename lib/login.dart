@@ -1,11 +1,9 @@
-
 import 'package:firebaseflutterapp/home.dart';
 
 import 'package:firebaseflutterapp/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -22,7 +20,7 @@ class _LoginpageState extends State<Loginpage> {
     try {
       var reference = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-           Fluttertoast.showToast(msg: "Successfully logined");
+      Fluttertoast.showToast(msg: "Successfully logined");
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
           return const Homepage();
@@ -32,7 +30,7 @@ class _LoginpageState extends State<Loginpage> {
       Fluttertoast.showToast(msg: "failed login", backgroundColor: Colors.red);
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -99,7 +97,10 @@ class _LoginpageState extends State<Loginpage> {
                           height: 40,
                         ),
                         GestureDetector(
-                          onTap: () => authenticatinlogin(email: emailcontroller.text, password: passcontroller.text, context: context),
+                          onTap: () => authenticatinlogin(
+                              email: emailcontroller.text,
+                              password: passcontroller.text,
+                              context: context),
                           child: Container(
                             //Button container
                             width: 250,

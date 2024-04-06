@@ -92,146 +92,149 @@ class _SignuppageState extends State<Signuppage> {
                       padding: const EdgeInsets.only(left: 15, top: 10),
                       child: Form(
                         key: formkey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Sign-up",
-                              style: TextStyle(
-                                  color: Colors.brown,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            const Text(
-                              "Name",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                            TextFormField(
-                              controller: namecontroller,
-                              decoration:
-                                  const InputDecoration(hintText: " Your Name"),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Text(
-                              "Email",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                            TextFormField(
-                              controller: emailcontroller,
-                              decoration: const InputDecoration(
-                                  hintText: " Your Email"),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Text(
-                              "Phone",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                            TextFormField(
-                              controller: mobilecontroller,
-                              decoration: const InputDecoration(
-                                  hintText: " Your Mobile no"),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Text(
-                              "Password",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                            TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "please enter pass";
-                                } else if (value.length < 6) {
-                                  return "enter strong password";
-                                }
-                                return null;
-                              },
-                              obscureText: isvisibility,
-                              controller: passcontroller,
-                              decoration: InputDecoration(
-                                  suffixIcon: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          isvisibility = !isvisibility;
-                                        });
-                                      },
-                                      icon: Icon(isvisibility
-                                          ? Icons.visibility
-                                          : Icons.visibility_off)),
-                                  hintText: " Set password"),
-                            ),
-                            // sign up button
-                            Padding(
-                              padding: const EdgeInsets.only(top: 23, left: 50),
-                              child: GestureDetector(
-                                onTap: () {
-                                  if (formkey.currentState!.validate()) {
-                    print("validation success");
-                  } else {
-                    print("validation failed");
-                  }
-                
-                                  Authetcationsignup(
-                                      name: namecontroller.text,
-                                      email: emailcontroller.text,
-                                      phone: mobilecontroller.text,
-                                      pass: passcontroller.text);
-                                  Navigator.pushReplacement(context,
-                                      MaterialPageRoute(
-                                    builder: (context) {
-                                      return Homepage();
-                                    },
-                                  ));
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Sign-up",
+                                style: TextStyle(
+                                    color: Colors.brown,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25),
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text(
+                                "Name",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                              TextFormField(
+                                controller: namecontroller,
+                                decoration: const InputDecoration(
+                                    hintText: " Your Name"),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text(
+                                "Email",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                              TextFormField(
+                                controller: emailcontroller,
+                                decoration: const InputDecoration(
+                                    hintText: " Your Email"),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text(
+                                "Phone",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                              TextFormField(
+                                controller: mobilecontroller,
+                                decoration: const InputDecoration(
+                                    hintText: " Your Mobile no"),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text(
+                                "Password",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                              TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "please enter pass";
+                                  } else if (value.length < 6) {
+                                    return "enter strong password";
+                                  }
+                                  return null;
                                 },
-                                child: Container(
-                                  //Button container
-                                  width: 250,
-                                  height: 35,
-                                  decoration: const BoxDecoration(boxShadow: [
-                                    BoxShadow(
-                                        offset: Offset(2, 2),
-                                        color: Colors.grey,
-                                        blurRadius: 0.1)
-                                  ], color: Colors.orange),
-                                  child: const Center(
-                                    child: Text(
-                                      "Sign up",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 20,
+                                obscureText: isvisibility,
+                                controller: passcontroller,
+                                decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isvisibility = !isvisibility;
+                                          });
+                                        },
+                                        icon: Icon(isvisibility
+                                            ? Icons.visibility
+                                            : Icons.visibility_off)),
+                                    hintText: " Set password"),
+                              ),
+                              // sign up button
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 23, left: 50),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if (formkey.currentState!.validate()) {
+                                      print("validation success");
+                                    } else {
+                                      print("validation failed");
+                                    }
+
+                                    Authetcationsignup(
+                                        name: namecontroller.text,
+                                        email: emailcontroller.text,
+                                        phone: mobilecontroller.text,
+                                        pass: passcontroller.text);
+                                    Navigator.pushReplacement(context,
+                                        MaterialPageRoute(
+                                      builder: (context) {
+                                        return const Homepage();
+                                      },
+                                    ));
+                                  },
+                                  child: Container(
+                                    //Button container
+                                    width: 250,
+                                    height: 35,
+                                    decoration: const BoxDecoration(boxShadow: [
+                                      BoxShadow(
+                                          offset: Offset(2, 2),
+                                          color: Colors.grey,
+                                          blurRadius: 0.1)
+                                    ], color: Colors.orange),
+                                    child: const Center(
+                                      child: Text(
+                                        "Sign up",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 20,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
