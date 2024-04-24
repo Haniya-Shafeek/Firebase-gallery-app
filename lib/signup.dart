@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebaseflutterapp/home.dart';
+import 'package:firebaseflutterapp/login.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -40,7 +41,7 @@ class _SignuppageState extends State<Signuppage> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const Homepage(),
+            builder: (context) => Loginpage(),
           ));
     } on FirebaseException {
       Fluttertoast.showToast(msg: "Failled");

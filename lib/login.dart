@@ -21,7 +21,7 @@ class _LoginpageState extends State<Loginpage> {
       var reference = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       Fluttertoast.showToast(msg: "Successfully logined");
-      Navigator.push(context, MaterialPageRoute(
+      Navigator.pushReplacement(context, MaterialPageRoute(
         builder: (context) {
           return const Homepage();
         },
